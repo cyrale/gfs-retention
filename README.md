@@ -99,6 +99,18 @@ docker run -d \
 
 `CRON_SCHEDULE` defaults to `0 4 * * *` (every day at 04:00) when not set.
 
+### Docker Compose
+
+A `docker-compose.yml` is provided for convenience. Copy `.env.example` to `.env`, fill in the values, then run:
+
+```bash
+cp .env.example .env   # edit it, then:
+docker compose up -d --build
+docker compose logs -f
+```
+
+The required S3 settings are validated at startup: `docker compose` fails fast with a clear message if `S3_ENDPOINT`, `S3_ACCESS_KEY_ID`, `S3_SECRET_ACCESS_KEY` or `S3_BUCKETS` are missing. `APPLY` stays empty by default (dry-run).
+
 Leave `APPLY` unset first and check the logs of the dry-run before enabling deletions.
 
 ## Safety
