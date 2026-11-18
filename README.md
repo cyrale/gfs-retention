@@ -39,10 +39,35 @@ Default retention is `14,8,12,3` (daily, weekly, monthly, yearly).
 
 ## Installation
 
+### From source
+
 ```bash
 npm install
 npm run build
 ```
+
+### As a dependency
+
+Install it directly from the Git repository (no authentication needed, the build runs automatically on install):
+
+```bash
+npm install github:cyrale/gfs-retention
+```
+
+It is also published to the GitHub Packages registry:
+
+```bash
+# Point the @cyrale scope at GitHub Packages (once).
+npm config set @cyrale:registry https://npm.pkg.github.com
+
+# Authenticate with a GitHub token that has the read:packages scope.
+npm login --scope=@cyrale --auth-type=legacy
+
+# Install it.
+npm install @cyrale/gfs-retention
+```
+
+Both options expose a `gfs-retention` executable, runnable with `npx gfs-retention` or from `node_modules/.bin/gfs-retention`.
 
 ## Usage
 

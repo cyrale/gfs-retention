@@ -65,7 +65,7 @@ Retention is expressed as four integers `daily,weekly,monthly,yearly` (default `
 - **Date handling**: `date-fns` with `@date-fns/tz` (explicit timezone handling, never rely on the process-local timezone in pure logic)
 - **Tests**: Vitest
 - **Container**: Docker, scheduling with supercronic (no host-side cron)
-- **Hosting**: private GitHub repository
+- **Hosting**: public GitHub repository
 
 Keep dependencies minimal. Adding a dependency requires a clear justification.
 

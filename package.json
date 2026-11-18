@@ -1,18 +1,28 @@
 {
-  "name": "gfs-retention",
-  "version": "1.0.0",
+  "name": "@cyrale/gfs-retention",
+  "version": "0.1.0",
   "description": "CLI tool that applies a GFS (Grandfather-Father-Son) retention policy to UpdraftPlus backups stored in S3-compatible buckets.",
   "author": {
     "name": "Cyril Jacquesson",
-    "email": "cyril@jacquesson.me"
+    "site": "https://github.com/cyrale"
   },
   "license": "MIT",
   "type": "module",
-  "main": "src/cli.ts",
+  "main": "./dist/index.js",
+  "bin": {
+    "gfs-retention": "./dist/index.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
   "scripts": {
     "build": "rolldown -c",
-    "start": "npm run build && node dist/cli.js",
-    "dev": "tsx src/cli.ts",
+    "prepare": "npm run build",
+    "start": "npm run build && node dist/index.js",
+    "dev": "tsx src/index.ts",
     "typecheck": "tsc --noEmit",
     "lint": "eslint src tests --ext .ts",
     "lint:fix": "eslint src tests --ext .ts --fix",

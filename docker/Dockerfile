@@ -5,12 +5,11 @@
 FROM node:26-slim AS build
 WORKDIR /app
 
-COPY package.json package-lock.json ./
-RUN npm ci
-
-COPY tsconfig.json rolldown.config.ts ./
+# Copy the sources before installing: the "prepare" lifecycle script runs
+# after "npm ci" and needs the build inputs (src/, tsconfig, rolldown config).
+COPY package.json package-lock.json tsconfig.json rolldown.config.ts ./
 COPY src ./src
-RUN npm run build
+RUN npm ci
 
 # Drop dev dependencies to keep only what the runtime needs.
 RUN npm prune --omit=dev
