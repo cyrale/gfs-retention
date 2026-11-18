@@ -76,7 +76,7 @@ Precedence: CLI flags > environment variables > defaults.
 | S3 secret key                           | n/a                                | `S3_SECRET_ACCESS_KEY`                 | required           |
 | Path-style addressing                   | `--no-force-path-style` to disable | `S3_FORCE_PATH_STYLE=false` to disable | enabled            |
 | Timezone                                | n/a                                | `TZ`                                   | `UTC`              |
-| Cron schedule (Docker only)             | n/a                                | `CRON_SCHEDULE`                        | required in Docker |
+| Cron schedule (Docker only)             | n/a                                | `CRON_SCHEDULE`                        | `0 4 * * *`        |
 
 Secrets are never accepted as CLI flags, to keep them out of shell history.
 
@@ -96,6 +96,8 @@ docker run -d \
   -e APPLY=true \
   gfs-retention
 ```
+
+`CRON_SCHEDULE` defaults to `0 4 * * *` (every day at 04:00) when not set.
 
 Leave `APPLY` unset first and check the logs of the dry-run before enabling deletions.
 
