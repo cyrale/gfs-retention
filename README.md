@@ -90,18 +90,18 @@ node dist/cli.js --buckets site-a --keep 14,8,12,3 --apply
 
 Precedence: CLI flags > environment variables > defaults.
 
-| Setting                                 | Flag                               | Environment variable                   | Default            |
-| --------------------------------------- | ---------------------------------- | -------------------------------------- | ------------------ |
-| Buckets (comma-separated)               | `--buckets`                        | `S3_BUCKETS`                           | required           |
-| Retention `daily,weekly,monthly,yearly` | `--keep`                           | `RETENTION`                            | `14,8,12,3`        |
-| Apply deletions                         | `--apply`                          | `APPLY=true`                           | off (dry-run)      |
-| S3 endpoint                             | `--endpoint`                       | `S3_ENDPOINT`                          | required           |
-| S3 region                               | n/a                                | `S3_REGION`                            | `us-east-1`        |
-| S3 access key                           | n/a                                | `S3_ACCESS_KEY_ID`                     | required           |
-| S3 secret key                           | n/a                                | `S3_SECRET_ACCESS_KEY`                 | required           |
-| Path-style addressing                   | `--no-force-path-style` to disable | `S3_FORCE_PATH_STYLE=false` to disable | enabled            |
-| Timezone                                | n/a                                | `TZ`                                   | `UTC`              |
-| Cron schedule (Docker only)             | n/a                                | `CRON_SCHEDULE`                        | `0 4 * * *`        |
+| Setting                                 | Flag                               | Environment variable                   | Default       |
+| --------------------------------------- | ---------------------------------- | -------------------------------------- | ------------- |
+| Buckets (comma-separated)               | `--buckets`                        | `S3_BUCKETS`                           | required      |
+| Retention `daily,weekly,monthly,yearly` | `--keep`                           | `RETENTION`                            | `14,8,12,3`   |
+| Apply deletions                         | `--apply`                          | `APPLY=true`                           | off (dry-run) |
+| S3 endpoint                             | `--endpoint`                       | `S3_ENDPOINT`                          | required      |
+| S3 region                               | n/a                                | `S3_REGION`                            | `us-east-1`   |
+| S3 access key                           | n/a                                | `S3_ACCESS_KEY_ID`                     | required      |
+| S3 secret key                           | n/a                                | `S3_SECRET_ACCESS_KEY`                 | required      |
+| Path-style addressing                   | `--no-force-path-style` to disable | `S3_FORCE_PATH_STYLE=false` to disable | enabled       |
+| Timezone                                | n/a                                | `TZ`                                   | `UTC`         |
+| Cron schedule (Docker only)             | n/a                                | `CRON_SCHEDULE`                        | `0 4 * * *`   |
 
 Secrets are never accepted as CLI flags, to keep them out of shell history.
 
@@ -154,3 +154,7 @@ npm test
 ```
 
 See [AGENTS.md](./AGENTS.md) for the conventions used by AI coding agents on this repository.
+
+## License
+
+[MIT](./LICENSE)
