@@ -16,7 +16,9 @@ RUN npm prune --omit=dev
 
 # ---- Runtime stage ---------------------------------------------------------
 # Minimal image running the CLI on a schedule with supercronic as PID 1.
-FROM node:26-slim AS runtime
+# Alpine keeps the image small; supercronic is a static Go binary and the
+# runtime dependencies are pure JavaScript, so musl is not an issue here.
+FROM node:26-alpine AS runtime
 
 ARG TARGETARCH
 ENV SUPERCRONIC_VERSION=v0.2.51
@@ -28,15 +30,12 @@ RUN set -eux; \
       arm64) SUPERCRONIC="supercronic-linux-arm64"; SHA1SUM="9d4c2000493215a1898502b2fc2dada3e8ea8c7a" ;; \
       *) echo "Unsupported architecture: ${TARGETARCH}" >&2; exit 1 ;; \
     esac; \
-    apt-get update; \
-    apt-get install -y --no-install-recommends curl ca-certificates; \
-    rm -rf /var/lib/apt/lists/*; \
+    apk add --no-cache curl ca-certificates; \
     curl -fsSL -o "/usr/local/bin/supercronic" \
       "https://github.com/aptible/supercronic/releases/download/${SUPERCRONIC_VERSION}/${SUPERCRONIC}"; \
     echo "${SHA1SUM}  /usr/local/bin/supercronic" | sha1sum -c -; \
     chmod +x /usr/local/bin/supercronic; \
-    apt-get purge -y curl; \
-    apt-get autoremove -y
+    apk del curl
 
 WORKDIR /app
 
@@ -49,7 +48,7 @@ COPY docker/entrypoint.sh /usr/local/bin/entrypoint.sh
 RUN chmod +x /usr/local/bin/entrypoint.sh
 
 # Run as a non-root user.
-RUN useradd --create-home --uid 10001 app
+RUN adduser -D -u 10001 app
 USER app
 
 # Default schedule: every day at 04:00. Overridable via CRON_SCHEDULE.
