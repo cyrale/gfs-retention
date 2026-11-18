@@ -29,7 +29,7 @@ The tool groups these files into sets, then applies the retention policy:
 3. A set kept by several levels is stored once.
 4. Any other set is deleted, as a whole.
 
-Default retention is `7,4,3,1` (daily, weekly, monthly, yearly).
+Default retention is `14,8,12,3` (daily, weekly, monthly, yearly).
 
 ## Requirements
 
@@ -90,7 +90,7 @@ docker run -d \
   -e S3_ACCESS_KEY_ID=... \
   -e S3_SECRET_ACCESS_KEY=... \
   -e S3_BUCKETS=site-a,site-b \
-  -e RETENTION=7,4,3,1 \
+  -e RETENTION=14,8,12,3 \
   -e TZ=Europe/Paris \
   -e CRON_SCHEDULE="0 4 * * *" \
   -e APPLY=true \

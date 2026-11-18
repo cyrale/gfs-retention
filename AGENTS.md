@@ -61,8 +61,8 @@ Retention is expressed as four integers `daily,weekly,monthly,yearly` (default `
 - **Runtime**: Node.js 26 (LTS)
 - **Language**: TypeScript (strict mode)
 - **S3 client**: `@aws-sdk/client-s3` (v3), configured with an explicit custom endpoint
-- **CLI parsing**: to be decided at scaffold time (prefer the built-in `node:util` `parseArgs`, no extra dependency)
-- **Date handling**: to be decided at scaffold time (timezone-aware ISO week and month boundaries are required)
+- **CLI parsing**: `commander`
+- **Date handling**: `date-fns` with `@date-fns/tz` (explicit timezone handling, never rely on the process-local timezone in pure logic)
 - **Tests**: Vitest
 - **Container**: Docker, scheduling with supercronic (no host-side cron)
 - **Hosting**: private GitHub repository
@@ -101,7 +101,6 @@ tests/
 docker/
   Dockerfile
   entrypoint.sh
-  crontab
 README.md
 AGENTS.md
 CLAUDE.md -> AGENTS.md
