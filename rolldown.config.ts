@@ -9,7 +9,7 @@ import { defineConfig } from "rolldown";
  * this project's code and relies on `node_modules` for its dependencies.
  */
 export default defineConfig({
-  input: "src/cli.ts",
+  input: "src/index.ts",
   platform: "node",
   external: [
     /^node:/,
@@ -21,7 +21,7 @@ export default defineConfig({
   output: {
     dir: "dist",
     format: "esm",
-    entryFileNames: "cli.js",
+    entryFileNames: "index.js",
     sourcemap: true,
   },
 });

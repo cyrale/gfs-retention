@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 import { Command } from "commander";
 import type { S3Client } from "@aws-sdk/client-s3";
 import { ConfigError, resolveConfig, type Config } from "./config";
@@ -110,7 +109,7 @@ function buildProgram(): Command {
 }
 
 /** Entry point. */
-async function main(): Promise<void> {
+export async function run(): Promise<void> {
   const program = buildProgram();
   program.parse();
   const options = program.opts();
@@ -157,5 +156,3 @@ async function main(): Promise<void> {
     process.exitCode = 1;
   }
 }
-
-void main();

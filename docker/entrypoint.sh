@@ -10,9 +10,9 @@ CRON_SCHEDULE="${CRON_SCHEDULE:-0 4 * * *}"
 
 # supercronic requires a POSIX cron file. The command runs the compiled CLI.
 CRONTAB_FILE="$(mktemp)"
-printf '%s cd /app && node dist/cli.js\n' "${CRON_SCHEDULE}" > "${CRONTAB_FILE}"
+printf '%s cd /app && node dist/index.js\n' "${CRON_SCHEDULE}" > "${CRONTAB_FILE}"
 
-echo "gfs-retention: scheduling 'node dist/cli.js' with schedule '${CRON_SCHEDULE}'"
+echo "gfs-retention: scheduling 'node dist/index.js' with schedule '${CRON_SCHEDULE}'"
 if [ -z "${APPLY:-}" ]; then
   echo "gfs-retention: APPLY is not set, scheduled runs will be dry-runs."
 fi
